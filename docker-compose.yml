@@ -3,6 +3,9 @@ version: '3.8'
 networks:
   monitoring: 
     driver: bridge
+    
+volumes:
+  grafana_data: {}
 
 services:
   nestjs-metrics:
@@ -16,7 +19,8 @@ services:
   
   grafana:
     image: grafana/grafana
-    container_name: grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
     ports:
       - 3000:3000
     networks:
@@ -25,7 +29,9 @@ services:
   prometheus:
     image: prom/prometheus
     volumes:
-      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+
+    command: --web.enable-lifecycle  --config.file=/etc/prometheus/prometheus.yml
     networks:
       - monitoring
     ports:
