@@ -10,7 +10,19 @@
 
 ```bash
 $ npm install
+$ npm run docker:composer
 ```
+
+After this command, check to up all applications. 
+
+Configuration Grafana:
+
+1. Go: Datasource >  New Datasource > Prometheus Time series.
+2. Defina the connection: http://prometheus:9090.
+3. Download Configuration JSON Dashboard => https://files.catbox.moe/nnolgo.txt.
+4. Access Grafana interface web at => http://localhost:3000.
+5. Go At: Dashboards > + New Button > Import > Upload Configuration > Open Dashboard
+6. 
 
 ## Running the app
 
